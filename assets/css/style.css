@@ -1,0 +1,36 @@
+body {
+    text-align: center;
+    padding: 0px 40px;
+    background-color: black;
+    }
+
+    h1,h2,p{
+        color: white;
+    }
+    .contenedor {
+    margin: 0 auto;
+    background-color: darkgrey;
+    }
+    .conversor{
+        margin: 0 auto;
+        width: 50%;
+        height: auto;
+    }
+    input{
+        width: 70%;
+    }
+    #select-monedas{
+        width: 100%;
+    }
+.btn-convertir{
+    margin: 10px 0;
+}
+
+.contenedor-canvas{
+    margin-top: 5px
+}
+
+#myChart{
+    width: 80%;
+    background-color: white;
+}
