@@ -1,8 +1,10 @@
 const selectMonedas = document.getElementById("select-monedas")
 const btnConvertir = document.getElementById("btn-convertir")
+const btnLimpiar = document.getElementById("btn-convertir")
 const resultado = document.getElementById("resultado")
+const contenedorCanvas = document.getElementById("mi-Canvas")
 const inputMonedas = document.getElementById("input-monedas")
-const chartDOM = document.getElementById("myChart").getContext("2d")
+// const ctx = document.getElementById("myChart").getContext("2d")
 const apiURL = "https://mindicador.cl/api/";
 
 async function getMonedas() {
@@ -50,7 +52,7 @@ function resultadoConvertor() {
     
          
 
-async function prepararConfiguracionParaLaGrafica() {
+async function renderGrafica() {
 const monedaName = selectMonedas.options[selectMonedas.selectedIndex].text
 const dataURL = apiURL+monedaName;
         
@@ -60,40 +62,46 @@ const arrayDeMonedas = monedas.serie
       
                 
                 
-const labels = arrayDeMonedas.map(moneda=>{
+const labelsMonedas = arrayDeMonedas.map(moneda=>{
 return moneda.fecha 
 })
  const titulo = `${monedaName}`;
  const colorDeLinea = "red";
- const miMoneda = arrayDeMonedas.map((moneda) => {
+ const valorMoneda = arrayDeMonedas.map((moneda) => {
      return moneda.valor
  });
 
-const datasets= [
-    {
-    label: titulo,
-    backgroundColor: colorDeLinea,
-    borderColor: "red",
-    data: miMoneda
-    } ]
-        return {labels, datasets};
-    }
-                 
 
-async function renderGrafica() {
-    const data = await prepararConfiguracionParaLaGrafica()
-    const config = {
-        type: "line",
-        data
-        }; 
-       new Chart(chartDOM, config)
-        
-           
+const ctx = document.getElementById("myChart").getContext("2d")
+ window.myChart = new Chart(ctx, {
+    type: 'line',
+    data:{
+        labels:labelsMonedas,
+        datasets:[{
+            label: titulo,
+            data: valorMoneda,
+        }]
+    },
+    options:{
+        scales: {
+            y:{
+                beginAtZero: false
+            }
+        }
     }
 
-    
+}) 
+
+
+
+}
+
 btnConvertir.addEventListener("click", function(){   
     resultadoConvertor() 
-    renderGrafica()
-                      
+    renderGrafica()  
+    if(window.myChart){
+        window.myChart.destroy()
+    } 
+              
     })
+
