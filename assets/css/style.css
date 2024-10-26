@@ -9,7 +9,12 @@ body {
     }
     .contenedor {
     margin: 0 auto;
-    background-color: darkgrey;
+    background: rgba(255, 255, 255, 0);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9px);
+-webkit-backdrop-filter: blur(9px);
+border: 1px solid rgb(107, 199, 252);
     }
     .conversor{
         margin: 0 auto;
@@ -18,16 +23,37 @@ body {
     }
     input{
         width: 70%;
+        border:1px solid rgb(107, 199, 252);
+        
     }
+    input:hover{
+        filter: drop-shadow(2px 2px 20px cyan)
+    }
+
     #select-monedas{
         width: 100%;
+        border:2px solid rgb(107, 199, 252);
+
+    }
+    #select-monedas:hover{
+        filter: drop-shadow(2px 2px 20px cyan)
     }
 .btn-convertir{
     margin: 10px 0;
+    border:1px solid rgb(107, 199, 252);
+        background-color: black;
+        color: aliceblue;
+        width: 8rem;
+        height: 2rem;
+        border-radius: 45px;
+}
+.btn-convertir:hover{
+    filter: drop-shadow(2px 2px 20px cyan)
 }
 
 .contenedor-canvas{
     margin-top: 5px
+    
 }
 
 #myChart{
